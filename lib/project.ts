@@ -128,6 +128,8 @@ function src(this: Project) {
 						undefined,
 						path.basename(this.configFileName));
 
+	console.log(`Project.src()`, { fileNames });
+
 	for (const error of errors) {
 		console.log(error.messageText);
 	}

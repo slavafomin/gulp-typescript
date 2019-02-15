@@ -32,9 +32,11 @@ const paths = {
 	release: 'release'
 };
 
-const tests = fs.readdirSync(path.join(__dirname, 'test')).filter(function(dir) {
-	return dir !== 'baselines' && dir !== 'output' && dir.substr(0, 1) !== '.';
-});
+// const tests = fs.readdirSync(path.join(__dirname, 'test')).filter(function(dir) {
+// 	return dir !== 'baselines' && dir !== 'output' && dir.substr(0, 1) !== '.';
+// });
+
+const tests = ['resolveJsonModule'];
 
 // Clean
 function clean(cb) {
@@ -75,9 +77,9 @@ const typecheck = gulp.parallel(typecheckDev, typecheck2_3);
 
 // We run every test on multiple typescript versions:
 const libs = [
-	['2.7', require(tsVersions.release27)],
-	['2.3', require(tsVersions.release23)],
-	['2.9', require(tsVersions.release29)],
+	// ['2.7', require(tsVersions.release27)],
+	// ['2.3', require(tsVersions.release23)],
+	// ['2.9', require(tsVersions.release29)],
 	['dev', require(tsVersions.dev)]
 ];
 

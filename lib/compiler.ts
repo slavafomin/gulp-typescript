@@ -153,11 +153,6 @@ export class ProjectCompiler implements ICompiler {
 	private attachContentToFile(file: OutputFile, fileName: string, content: string) {
 		const [, extension] = utils.splitExtension(fileName, ['d.ts', 'd.ts.map']);
 		switch (extension) {
-			case 'js':
-			case 'jsx':
-				file.jsFileName = fileName;
-				file.jsContent = content;
-				break;
 			case 'd.ts.map':
 				file.dtsMapFileName = fileName;
 				file.dtsMapContent = content;
@@ -168,6 +163,10 @@ export class ProjectCompiler implements ICompiler {
 				break;
 			case 'map':
 				file.jsMapContent = content;
+				break;
+			default:
+				file.jsFileName = fileName;
+				file.jsContent = content;
 				break;
 		}
 	}
