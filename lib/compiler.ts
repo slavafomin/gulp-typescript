@@ -122,6 +122,8 @@ export class ProjectCompiler implements ICompiler {
 
 			const input = this.host.input.getFileNames(true);
 
+			console.log(`inputDone()`, { input });
+
 			for (let i = 0; i < input.length; i++) {
 				const fileName = utils.normalizePath(input[i]);
 				const file = this.project.input.getFile(fileName);
@@ -135,6 +137,7 @@ export class ProjectCompiler implements ICompiler {
 				}
 
 				const fileNameOriginal = utils.normalizePath(sourceFiles[0].fileName);
+				console.log({ fileNameOriginal });
 				const file = output[fileNameOriginal];
 				if (!file) return;
 
@@ -151,6 +154,7 @@ export class ProjectCompiler implements ICompiler {
 	}
 
 	private attachContentToFile(file: OutputFile, fileName: string, content: string) {
+		console.log(`attachContentToFile()`, { fileName });
 		const [, extension] = utils.splitExtension(fileName, ['d.ts', 'd.ts.map']);
 		switch (extension) {
 			case 'd.ts.map':
@@ -167,6 +171,7 @@ export class ProjectCompiler implements ICompiler {
 			default:
 				file.jsFileName = fileName;
 				file.jsContent = content;
+				console.log(`"${fileName}" is added to JS stream`);
 				break;
 		}
 	}
